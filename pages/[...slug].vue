@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const route = useRoute()
 const slug = ref('')
 
@@ -21,7 +21,7 @@ const { data, pending, error, refresh } = await useLazyFetch('https://nuxt3-head
 <template>
     <div class="container mx-auto mt-8">
         <div>
-            {{ data }}
+            <Header :title="data[0].title.rendered" :subtitle="data[0].content.rendered" />
         </div>
 
         <div class="bg-blue-300 mt-8 text-2xl p-4">
