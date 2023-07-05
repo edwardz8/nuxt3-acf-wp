@@ -1,16 +1,15 @@
 <script setup>
 const props = defineProps({
-    title: String,
-    subtitle: String
+    layout: Object 
 })
 
 </script>
 
 <template>
-    <div>
+    <ClientOnly>
         <div>
-            <h2>{{ title }}</h2>
-            <p>{{ subtitle }}</p>
+            <h2>{{ layout?.title }}</h2>
+            <p>{{ layout?.subtitle }}</p>
         </div>
-    </div>
+    </ClientOnly>
 </template>

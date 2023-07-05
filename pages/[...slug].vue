@@ -13,23 +13,24 @@ if (route.params.slug) {
     slug.value = 'home'
 }
 
-const { data, pending, error, refresh } = await useLazyFetch('https://nuxt3-headless.flywheelsites.com/wp-json/wp/v2/pages', {
+const { data, pending, error, refresh } = await useLazyFetch(
+    'https://nuxt3-headless.flywheelsites.com/wp-json/wp/v2/pages', {
     query: { slug: slug.value }
 })
 </script>
 
 <template>
-    <div class="container mx-auto mt-8">
-        <div>
-            <Header :title="data[0].title.rendered" :subtitle="data[0].content.rendered" />
+    <ClientOnly>
+        <div class="container mx-auto mt-8">
+            <div>
+                <Header :title="data[0].title.rendered" :subtitle="data[0].content.rendered" />
+            </div>
+            
+            <div v-for="layout in data[0].acf.flexible">
+                <Flexible :layout="layout" />
+            </div>
+            
+            <div class="mt-8">{{ route }}</div>
         </div>
-
-        <div class="bg-blue-300 mt-8 text-2xl p-4">
-            {{ slug }}
-        </div>
-
-        <div class="mt-8">{{ route }}</div>
-
-
-    </div>
+    </ClientOnly>
 </template>
