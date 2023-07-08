@@ -31,7 +31,7 @@ const { data, pending, error, refresh } = await useLazyFetch(
                 {{ slug }}
             </div>
             
-            <div v-for="layout in data[0]?.acf.flexible">
+            <div v-for="layout in data[0].acf.flexible">
                 <Flexible :layout="layout" />
             </div>
             
